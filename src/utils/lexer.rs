@@ -27,6 +27,12 @@ pub enum TokenKind {
     /** Char chains: String */
     String(String),
 
+    /** ( delimiting the opening of a parenthesis group */
+    OpenParenthesis,
+
+    /** ) delimiting the end of a parenthesis group */
+    CloseParenthesis,
+
     /** ´ delimeting the opening of a String */
     OpenApostrophe,
 
@@ -128,8 +134,10 @@ impl Lexer {
                 '+' => tokens.push(TokenKind::Operator { raw: '+', kind: OperatorKind::Adder }),
                 '*' => tokens.push(TokenKind::Operator { raw: '*', kind: OperatorKind::Multiplier }),
                 '^' => tokens.push(TokenKind::Operator { raw: '^', kind: OperatorKind::Power }),
-                '\\' => tokens.push(TokenKind::Operator { raw: '\\', kind: OperatorKind::Diviser }),
+                '/' => tokens.push(TokenKind::Operator { raw: '/', kind: OperatorKind::Diviser }),
                 '-' => tokens.push(TokenKind::Operator { raw: '-', kind: OperatorKind::Substracter }),
+                '(' => tokens.push(TokenKind::OpenParenthesis),
+                ')' => tokens.push(TokenKind::CloseParenthesis),
                 '\n' => tokens.push(TokenKind::NewLine),
                 '`' => {
                         tokens.push(TokenKind::OpenApostrophe);
