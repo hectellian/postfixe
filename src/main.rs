@@ -65,38 +65,19 @@ fn postfixe(tokens: Vec<Token>) -> Vec<Token> {
             _ => postfixe.push(element)
         }
     }
-
     // println!("{:#?}", stack);
-
     postfixe
 }
 
 fn main() {
     let expression = String::from("A + (B / C - D ^ E )");
 
-    /* let mut stack: Stack<&str> = Stack::new();
-
-    stack.push("(");
-    stack.push("(");
-    stack.push("*");
-
-    println!("Inside the Stack: {:#?}", stack);
-    println!("Last element is: {:#?}", stack.peek());
-
-    let item = stack.pop();
-    
-    println!("Inside the Stack after the pop: {:#?}", stack);
-    println!("What about the pop (item): {:?}", item); */
-
     let l = Lexer::from(expression);
     let t = l.tokenize().unwrap();
     println!("algebric expression: {:?}", t);
+
     print!("\n");
+
     let p = postfixe(t);
     println!("postfixe expression: {:?}", p);
-
-    /* let op = &t[1];
-
-    let opcost = cost(op);
-    println!("Cost of {:?}: {:?}", op, opcost); */
 }
