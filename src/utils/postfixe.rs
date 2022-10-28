@@ -56,7 +56,7 @@ pub fn postfixe(tokens: Vec<Token>) -> Vec<Token> {
                             let last = stack.pop();
                             postfixe.push(last.unwrap());
                         },
-                        None => break
+                        None => {postfixe.push(TokenKind::EOF);break}
                     }
                 }
             },
