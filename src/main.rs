@@ -5,7 +5,7 @@ use crate::utils::postfixe::*;
 use crate::utils::eval::*;
 
 fn main() {
-    let expression = String::from("2 * (4^2 + 42/3)");
+    let expression = String::from("-2 * (4^2 + 42/3)");
 
     let l = Lexer::from(expression);
     let t = l.tokenize().unwrap();

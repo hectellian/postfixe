@@ -1,8 +1,14 @@
 use crate::utils::lexer::*;
 
-fn calc(v1: u32, op: char, v2: u32) -> u32 {
+fn calc(v1: i32, op: char, v2: i32) -> i32 {
     match op {
-            '^' => v1.pow(v2),
+            '^' => {
+                if v2 >= 0 {
+                    v1.pow(v2.unsigned_abs())
+                } else {
+                    1/v1.pow(v2.unsigned_abs())
+                }
+            },
             '*' => v1*v2,
             '/' => v1/v2,
             '+' => v1+v2,
@@ -11,7 +17,7 @@ fn calc(v1: u32, op: char, v2: u32) -> u32 {
     }
 }
 
-pub fn eval(postfixe: Vec<Token>) -> Result<u32, &'static str> {
+pub fn eval(postfixe: Vec<Token>) -> Result<i32, &'static str> {
     let mut stack = Vec::new();
 
     for element in postfixe {
@@ -24,14 +30,14 @@ pub fn eval(postfixe: Vec<Token>) -> Result<u32, &'static str> {
                 let res = calc(op2.unwrap(), raw, op1.unwrap());
                 stack.push(res);
 
-                //println!("calc: {:?} {:?} {:?} = {:?}", op2.unwrap(), raw, op1.unwrap(), res);
+                println!("calc: {:?} {:?} {:?} = {:?}", op2.unwrap(), raw, op1.unwrap(), res);
             },
             TokenKind::EOF => break,
             _ => return Err("Invalid Format: Numeric Postfixe Format Expected")
         }
     }
 
-    let evaluated: u32 = stack.pop().unwrap();
+    let evaluated: i32 = stack.pop().unwrap();
 
     Ok(evaluated)
 }
