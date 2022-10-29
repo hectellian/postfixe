@@ -1,3 +1,5 @@
+use std::env;
+
 mod utils;
 
 use crate::utils::lexer::*;
@@ -5,8 +7,10 @@ use crate::utils::postfixe::*;
 use crate::utils::eval::*;
 
 fn main() {
-    let expression = String::from("2 * (4^2 + 42/3)");
+    let args: Vec<String> = env::args().collect();
 
+    let expression = String::from( &args[1..].concat() );
+    
     let l = Lexer::from(expression);
     let t = l.tokenize().unwrap();
     println!("algebric expression: {:?}", t);
@@ -21,3 +25,6 @@ fn main() {
     let e = eval(p);
     println!("evalued expression result: {:?}", e);
 }
+
+#[cfg(test)]
+mod test;

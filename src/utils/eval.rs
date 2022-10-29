@@ -31,7 +31,7 @@ pub fn eval(postfixe: Vec<Token>) -> Result<u32, &'static str> {
         }
     }
 
-    let evaluated: u32 = stack.pop().unwrap();
+    let evaluated: u32 = stack.pop().unwrap_or(0);
 
     Ok(evaluated)
 }
