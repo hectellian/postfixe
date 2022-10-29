@@ -2,7 +2,7 @@
 name = "postfixe"
 version = "0.1.0"
 authors = ["Anthony Christoforou anthony.christoforou@etu.unige.ch, Ethan Arm ethan.arm@etu.unige.ch"]
-license = "GNU GENERAL PUBLIC LICENSE"
+license = "GPL-3.0 license"
 readme = "README.md"
 homepage = "https://github.com/hectellian/postfixe"
 repository = "https://github.com/hectellian/postfixe"
