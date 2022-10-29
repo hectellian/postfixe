@@ -6,7 +6,7 @@ license = "GNU GENERAL PUBLIC LICENSE"
 readme = "README.md"
 homepage = "https://github.com/hectellian/postfixe"
 repository = "https://github.com/hectellian/postfixe"
-edition = "2022"
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
