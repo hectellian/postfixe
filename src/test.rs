@@ -21,7 +21,7 @@ fn negative_numbers(){
     let p = postfixe(t);
     let e = eval(p);
     match e {
-        Ok(s) => assert_eq!(s, 60.0),
+        Ok(s) => assert_eq!(s, -60.0),
         Err(err) => println!("{:?}", err)
     }
 }
