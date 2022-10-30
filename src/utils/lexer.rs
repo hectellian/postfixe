@@ -129,12 +129,12 @@ impl Lexer {
             }
             match c {
                 '\0' => {tokens.push(TokenKind::EOF); break;},
-                ' ' => continue,
+                ' ' => {print!("s"); continue},
                 '=' => tokens.push(TokenKind::Equal),
                 '+' => tokens.push(TokenKind::Operator { raw: '+', kind: OperatorKind::Adder }),
                 '*' => tokens.push(TokenKind::Operator { raw: '*', kind: OperatorKind::Multiplier }),
                 '^' => tokens.push(TokenKind::Operator { raw: '^', kind: OperatorKind::Power }),
-                '/' => tokens.push(TokenKind::Operator { raw: '/', kind: OperatorKind::Diviser }),
+                '/' => {tokens.push(TokenKind::Operator { raw: '/', kind: OperatorKind::Diviser }); print!("hi");},
                 '-' => tokens.push(TokenKind::Operator { raw: '-', kind: OperatorKind::Substracter }),
                 '(' => tokens.push(TokenKind::OpenParenthesis),
                 ')' => tokens.push(TokenKind::CloseParenthesis),
@@ -186,8 +186,8 @@ impl Lexer {
                                             TokenKind::UnknownToken(_) => s.insert(0, '-'),
                                             _ => {tokens.push(nend); s.insert(0, '-')}
                                         }
-                                    }
-                                    _ => {}
+                                    },
+                                    _ => {tokens.push(end);}
                                 }
                             },
                             _ => tokens.push(end)
