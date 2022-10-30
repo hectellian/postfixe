@@ -8,7 +8,7 @@ fn only_numerical_values() {
     let p = postfixe(t);
     let e = eval(p);
     match e {
-        Ok(s) => assert_eq!(s, 60),
+        Ok(s) => assert_eq!(s, 60.0),
         Err(err) => println!("{:?}", err)
     }
 }
@@ -21,7 +21,7 @@ fn empty_expression() {
     let p = postfixe(t);
     let e = eval(p);
     match e {
-        Ok(s) => assert_eq!(s, 0),
+        Ok(s) => assert_eq!(s, 0.0),
         Err(err) => println!("{:?}", err)
     }
 }
