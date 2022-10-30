@@ -11,9 +11,7 @@ fn main() {
 
     let expression = String::from( &args[1..].concat() );
     
-    let s = String::from("4 / 3");
-    println!("{}",s);
-    let l = Lexer::from(s);
+    let l = Lexer::from(expression);
     let t = l.tokenize().ok().unwrap();
     println!("algebric expression: {:?}", t);
 
