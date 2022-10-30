@@ -24,7 +24,7 @@ pub fn eval(postfixe: Vec<Token>) -> Result<f32, &'static str> {
                 let res = calc(op2.unwrap(), raw, op1.unwrap());
                 stack.push(res);
 
-                //println!("calc: {:?} {:?} {:?} = {:?}", op2.unwrap(), raw, op1.unwrap(), res);
+                println!("calc: {:?} {:?} {:?} = {:?}", op2.unwrap(), raw, op1.unwrap(), res);
             },
             TokenKind::EOF => break,
             _ => return Err("Invalid Format: Numeric Postfixe Format Expected")

@@ -46,7 +46,7 @@ pub enum TokenKind {
     UnknownToken(String)
 }
 
-#[derive(Debug)]
+#[derive(Debug,Clone, Copy)]
 pub enum OperatorKind {
     /** The multiplication Operator */
     Multiplier,
@@ -175,6 +175,24 @@ impl Lexer {
                         }
                     }
                     
+                    if let Some(end) = tokens.pop() {
+                        match end {
+                            TokenKind::Operator { raw, kind } => {
+                                match kind {
+                                    OperatorKind::Substracter =>{
+                                        let nend = tokens.pop().unwrap_or(TokenKind::UnknownToken(String::new()));
+                                        match nend {
+                                            TokenKind::Real(_) | TokenKind::Integer(_) => {tokens.push(nend); tokens.push(end);},
+                                            TokenKind::UnknownToken(_) => s.insert(0, '-'),
+                                            _ => {tokens.push(nend); s.insert(0, '-')}
+                                        }
+                                    }
+                                    _ => {}
+                                }
+                            },
+                            _ => tokens.push(end)
+                        }
+                    }
                     if s.contains('.') {
                         tokens.push(TokenKind::Real(s));
                     } else {
