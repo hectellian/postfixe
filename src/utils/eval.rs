@@ -1,29 +1,23 @@
 use crate::utils::lexer::*;
 
-fn calc(v1: i32, op: char, v2: i32) -> i32 {
+fn calc(v1: f32, op: char, v2: f32) -> f32 {
     match op {
-            '^' => {
-                if v2 >= 0 {
-                    v1.pow(v2.unsigned_abs())
-                } else {
-                    1/v1.pow(v2.unsigned_abs())
-                }
-            },
+            '^' => v1.powf(v2),
             '*' => v1*v2,
             '/' => v1/v2,
             '+' => v1+v2,
             '-' => v1-v2,
-            _ => 0,
+            _ => 0.0,
     }
 }
 
-pub fn eval(postfixe: Vec<Token>) -> Result<i32, &'static str> {
+pub fn eval(postfixe: Vec<Token>) -> Result<f32, &'static str> {
     let mut stack = Vec::new();
 
     for element in postfixe {
         match element {
-            TokenKind::Integer(v) => stack.push(v.parse().unwrap_or(0)),
-            TokenKind::Real(v) => stack.push(v.parse().unwrap_or(0)),
+            TokenKind::Integer(v) => stack.push(v.parse().unwrap_or(0.0)),
+            TokenKind::Real(v) => stack.push(v.parse().unwrap_or(0.0)),
             TokenKind::Operator{ raw , .. } => {
                 let op1 = stack.pop();
                 let op2 = stack.pop();
@@ -37,7 +31,7 @@ pub fn eval(postfixe: Vec<Token>) -> Result<i32, &'static str> {
         }
     }
 
-    let evaluated: i32 = stack.pop().unwrap();
+    let evaluated: f32 = stack.pop().unwrap_or(0.0);
 
     Ok(evaluated)
 }
