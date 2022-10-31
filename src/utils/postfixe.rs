@@ -39,11 +39,11 @@ pub fn postfixe(tokens: Vec<Token>) -> Vec<Token> {
             TokenKind::CloseParenthesis => {
                 loop {
                     let p = stack.last();
-                    match p.unwrap() {
+                    match p.unwrap_or(&TokenKind::Integer(String::from("0"))) {
                         &TokenKind::OpenParenthesis => {stack.pop();break},
                         _ => {
                             let last = stack.pop();
-                            postfixe.push(last.unwrap());
+                            postfixe.push(last.unwrap_or(TokenKind::Integer(String::from("0"))));
                         }  
                     }
                 }

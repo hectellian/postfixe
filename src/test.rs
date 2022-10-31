@@ -51,3 +51,16 @@ fn empty_expression() {
         Err(err) => println!("{:?}", err)
     }
 }
+
+#[test]
+fn non_numerical_value() {
+    let expression = String::from("a + 6");
+    let l = Lexer::from(expression);
+    let t = l.tokenize().ok().unwrap();
+    let p = postfixe(t);
+    let e = eval(p);
+    match e {
+        Ok(p) => println!("{}", p),
+        Err(err) => assert_eq!(err, "Invalid Format: Numeric Postfixe Format Expected")
+    }
+}
