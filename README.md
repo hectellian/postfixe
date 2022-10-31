@@ -35,7 +35,7 @@ Then, in the command line juste type:
 
 ---
 
-Or (if you already hace the binary file)
+Or (if you already have the binary file)
 
 ```bash
 ./postfixe "arithmetic expression"
